@@ -22,8 +22,8 @@ class Lightbulb:
 
 
 def main():
-    lightbulb = Lightbulb(80, True, "Phillips", 500)
-    lightbulb.to_string()
+    phillips_lightbulb = Lightbulb(80, True, "Phillips", 10)
+    phillips_lightbulb.to_string()
 
 
 if __name__ == "__main__":
