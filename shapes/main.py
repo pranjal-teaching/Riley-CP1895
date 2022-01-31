@@ -1,50 +1,24 @@
-import math
 import sys
-from dataclasses import dataclass
 import pickle
-
-
-@dataclass
-class Circle:
-    radius: float
-    center_position: tuple
-
-    def get_area(self):
-        return math.pi * (self.radius ** 2)
-
-    def get_circumference(self):
-        return 2 * math.pi * self.radius
-
-
-@dataclass
-class Rectangle:
-    length: float
-    width: float
-    top_left_corner_position: tuple
-
-    def get_area(self):
-        return self.length * self.width
-
-    def get_perimeter(self):
-        return (2 * self.length) + (2 * self.width)
+import shapes
 
 
 def load_shapes():
     try:
         with open("shapes.bin", "rb") as file:
-            shapes = pickle.load(file)
+            shapes_list = pickle.load(file)
     except FileNotFoundError:
-        shapes = []
+        shapes_list = []
     except OSError:
         print("Error reading file - closing program.")
         sys.exit()
-    return shapes
+    return shapes_list
 
 
-def save_shapes(shapes):
+def save_shapes(shapes_list):
     try:
         with open("shapes.bin", "wb") as file:
-            pickle.dump(shapes, file)
+            pickle.dump(shapes_list, file)
     except OSError:
         print("Error saving file - closing program.")
 
@@ -60,10 +34,10 @@ def add_shape(shape, shapes_list):
     try:
         if shape.lower() == "circle":
             radius = float(input("Enter radius of circle: "))
-            x_axis = float(input("Enter the x-axis position: "))
-            y_axis = float(input("Enter the y-axis position: "))
+            x_axis = float(input("Enter the x-axis position of the center: "))
+            y_axis = float(input("Enter the y-axis position of the center: "))
             axis = (x_axis, y_axis)
-            circle = Circle(radius, axis)
+            circle = shapes.Circle(radius, axis)
             shapes_list.append(circle)
             save_shapes(shapes_list)
         elif shape.lower() == "rectangle":
@@ -72,7 +46,7 @@ def add_shape(shape, shapes_list):
             x_axis = float(input("Enter the x-axis position of the top-left corner: "))
             y_axis = float(input("Enter the y-axis position of the top-left corner: "))
             axis = (x_axis, y_axis)
-            rectangle = Rectangle(length, width, axis)
+            rectangle = shapes.Rectangle(length, width, axis)
             shapes_list.append(rectangle)
             save_shapes(shapes_list)
         else:
@@ -85,8 +59,8 @@ def add_shape(shape, shapes_list):
 
 
 def view_shapes(shapes_list):
-    for shapes in shapes_list:
-        print(shapes)
+    for shape in shapes_list:
+        print(shape)
 
 
 def main():
