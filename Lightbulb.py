@@ -1,5 +1,5 @@
 class Lightbulb:
-    def __init__(self, wattage, is_led, brand_name, brightness, is_on=False):
+    def __init__(self, wattage: int, is_led: bool, brand_name: str, brightness: int = 0, is_on: bool = False):
         self.wattage = wattage
         self.is_led = is_led
         self.brand_name = brand_name
@@ -18,12 +18,15 @@ class Lightbulb:
             print("LED")
 
     def set_brightness(self, level):
+        assert 0 <= level <= 10, 'Level outside bounds'
         self.brightness = level
 
 
 def main():
-    phillips_lightbulb = Lightbulb(80, True, "Phillips", 10)
+    phillips_lightbulb = Lightbulb(80, True, "Phillips")
     phillips_lightbulb.to_string()
+    phillips_lightbulb.set_brightness(10)
+    phillips_lightbulb.turn_on()
 
 
 if __name__ == "__main__":
