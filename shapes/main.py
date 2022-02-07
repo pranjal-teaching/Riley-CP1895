@@ -1,7 +1,6 @@
 import sys
 import pickle
 import turtle
-
 import shapes
 from turtle import *
 
