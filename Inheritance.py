@@ -20,12 +20,12 @@ class Book(Publication):
 
 class Magazine(Periodical):
     def __init__(self, title, publisher, price, period):
-        Periodical.__init__(self, title, price, period, publisher)
+        Periodical.__init__(self, title, publisher, price, period)
 
 
 class Newspaper(Periodical):
     def __init__(self, title, publisher, price, period):
-        Periodical.__init__(self, title, price, period, publisher)
+        Periodical.__init__(self, title, publisher, price, period)
 
 
 b1 = Book("Brave New World", "Aldous Huxley", 311, 29.0)
